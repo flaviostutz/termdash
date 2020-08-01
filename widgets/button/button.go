@@ -224,3 +224,15 @@ func (b *Button) Options() widgetapi.Options {
 		WantMouse:    widgetapi.MouseScopeGlobal,
 	}
 }
+
+func (b *Button) Opts(opts ...Option) error {
+	opt := newOptions(b.text)
+	for _, o := range opts {
+		o.set(opt)
+	}
+	if err := opt.validate(); err != nil {
+		return err
+	}
+	b.opts = opt
+	return nil
+}
