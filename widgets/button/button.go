@@ -226,7 +226,8 @@ func (b *Button) Options() widgetapi.Options {
 }
 
 //ApplyOpts update current button options
-func (b *Button) ApplyOpts(opts ...Option) error {
+func (b *Button) ApplyOpts(text string, opts ...Option) error {
+	b.text = text
 	opt := newOptions(b.text)
 	for _, o := range opts {
 		o.set(opt)
